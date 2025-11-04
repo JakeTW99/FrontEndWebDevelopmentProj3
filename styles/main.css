@@ -183,7 +183,7 @@ button:focus {
 /* Memory Card Setup/Styling */
 .memoryGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
     grid-gap: 15px;
     max-width: 750px;
     margin: 20px auto;
@@ -288,9 +288,9 @@ button:focus {
 }
 
 /* Ensure Responsive Design */
-@media (min-width: 600px) {
+@media (min-width: 500px) {
     .memoryGrid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 3fr));
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         grid-gap: 30px;
     }
 }
