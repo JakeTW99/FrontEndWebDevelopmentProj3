@@ -1,0 +1,295 @@
+/* General HTML styling */
+header {
+    text-align: left;
+    margin: 20px auto; 
+    padding: 20px; 
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fafafa;
+    color: #333;
+}
+
+footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 10px;
+    background-color: #f1f1f1;
+}
+
+p {
+    font-size: 1.5em;
+}
+
+/* Styling for Game Containers/Game Modes */
+#GamesContainer {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#flashCardsContent,
+#memoryCardsContent {
+    display: none;
+    margin: auto;
+}
+
+.flashMode #flashCardsContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.flashMode #memoryCardsContent {
+    display: none;
+}
+
+.memoryMode #memoryCardsContent {
+    display: block;
+}
+
+.memoryMode #flashCardsContent {
+    display: none;
+}
+
+/* Styling for flashCard Containers including the front and back of cards */
+.cardContainer {
+    width: 300px;
+    height: 200px;
+    margin-top: 50px 0 0 0;
+    text-align: center;
+}
+
+.cardContainer:focus:not(:focus-visible), .memoryCard:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.cardBack, .cardFront {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background-color: #f8f8f8;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    
+}
+
+.cardBack {
+    transform: rotateX(180deg);
+}
+
+.cardBack .flip, .cardFront .flip {
+    margin-bottom: 15px;
+    margin-bottom: 0;
+}
+
+.cardInner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cardInner.flipped {
+    transform: rotateX(180deg);
+}
+
+.cardInner.flipping{
+    pointer-events: none;
+}
+
+.cardFooter {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+/* Acts as the "footer" and progress tracker */
+.movesMade {
+    text-align: center;
+}
+
+/* Button styling/handling */
+button {
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #f0f0f0;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 5px #aaa;
+}
+
+.cardActions {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 15px;
+    width: 300px;
+    margin: 10px 20px;
+}
+
+.cardActions button {
+    flex-basis: 50%;
+}
+
+.cardActions .gotIt {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.cardActions .again {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.cardActions .gotIt:hover {
+    background-color: #1e7e34;
+}
+
+.cardActions .again:hover {
+    background-color: #c82333;
+}
+
+.flip:focus, .gotIt:focus, .again:focus, #modeToggle:focus {
+    outline: 3px solid #aaa;
+    outline-offset: 4px;
+    border-radius: 8px;
+}
+
+/* Memory Card Setup/Styling */
+.memoryGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 15px;
+    max-width: 750px;
+    margin: 20px auto;
+    padding: 0 10px;
+}
+
+.memoryCard {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: white;
+    perspective: 800px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+.memoryCard:hover,
+.memoryCard:focus {
+    transform: scale(1.05);
+    background-color: transparent;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.memoryCard:focus {
+    outline: 3px solid #aaa;
+    outline-offset: 4px;
+    border-radius: 8px;
+}
+
+.memoryCard.flipped .memoryCardMatchInner {
+    transform: rotateY(180deg);
+}
+
+.memoryCard.matched {
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.3;
+    transform: none;
+}
+
+.memoryCardMatchInner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.memoryCardMatchFront {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+.memoryCardMatchFront img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.memoryCardMatchBack {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    transform: rotateY(180deg);
+}
+
+.memoryCardMatchBack img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Screen reader for game annoucement (Matched or No Match */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Ensure Responsive Design */
+@media (min-width: 600px) {
+    .memoryGrid {
+        grid-gap: 30px;
+    }
+}
